@@ -29,6 +29,7 @@ public class DepositAccount extends Account {
 
     // @Override
     // public void take(double amount) {
-    //     super.take(amount dateTime + );
+    //     super.take((LocalDateTime.now() - dateTime) < depositPeroidInMonth);
+    //     return 0
     // }
 }

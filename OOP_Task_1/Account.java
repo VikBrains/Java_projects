@@ -6,6 +6,7 @@ public class Account {
     public Account (double amount) {
         this.amount = amount;
     }
+    
     public void add (double amount) {
         amount += amount;
 
@@ -14,7 +15,7 @@ public class Account {
         amount -= amount;
     }
 
-    public double getCheck() {
+    public double getAmount() {
         return amount;
     }
 }

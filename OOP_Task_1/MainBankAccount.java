@@ -13,21 +13,21 @@ public class MainBankAccount {
             String cmd = scanner.nextLine();
             
             if (cmd.equals("check")) {
-                System.out.println("Balance your account is: " + account.getCheck() );
+                System.out.println("Balance your account is: " + account.getAmount() );
             } 
             else if (cmd.equals("add")) {
                 System.out.println("Input Sum ");
                 int inp = scanner.nextInt();
                 account.add(inp);
                 System.out.println("deposited sum " + inp);
-                System.out.println("Balance your account is: " + account.getCheck());
+                System.out.println("Balance your account is: " + account.getAmount());
             } 
             else if (cmd.equals("take")) {
                 System.out.println("Input desired sum ");
              int ou = scanner.nextInt();
                 account.take(ou);
                 System.out.println("debited from your account: " + ou);
-                System.out.println("Balance your account is: " + account.getCheck());
+                System.out.println("Balance your account is: " + account.getAmount());
                 scanner.close();
             } 
             else if (cmd.equals("exit")) {

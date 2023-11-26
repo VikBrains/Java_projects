@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyTree {
-    private long countPeople;    // ошибка
+    private long countPeople;
+
     private List<Human> humanList;
 
     public FamilyTree(){                                // конструктор без аргументов
@@ -15,15 +16,12 @@ public class FamilyTree {
         this.humanList = humanList;
     }
 
-    public boolean add(Human human){                   // добавление человека
-        if (human == null) {                           // этот if можно не брать
-            return false;
-        }
-        if (!humanList.contains(human)){                 // проверка на наличие человека в дереве
+    public boolean add(Human human){
+        if (!humanList.contains(human)){
             humanList.add(human);
             human.setId(countPeople++);
 
-            addToParents(human);                        // методы создания связи с родственниками
+            addToParents(human);
             addToChildren(human);
 
             return true;
@@ -31,19 +29,19 @@ public class FamilyTree {
         return false;
     }
 
-    private void addToParents(Human human){               // добавление связи с родителями
+    private void addToParents(Human human){
         for(Human parent: human.getParents()){
-            parent.addChild(human);                       // прибавление ребёнка нововведённому человеку
+            parent.addChild(human);
         }
     }
 
-    private void addToChildren(Human human){               // прибавление родителя нововведённому ребёнку
+    private void addToChildren(Human human){
         for (Human child: human.getChildren()){
             child.addParent(human);
         }
     }
 
-    public List<Human> getSiblings(int id){               // нахождение братьев и сестёр ( не исп. пока)
+    public List<Human> getSiblings(int id){
         Human human = getById(id);
         if (human == null){
             return null;
@@ -52,15 +50,15 @@ public class FamilyTree {
         for (Human parent: human.getParents()){
             for (Human child: parent.getChildren()){
                 if (!child.equals(human)){
-                    res.add(child);                        // добавление братьев и сестёр
+                    res.add(child);
                 }
             }
         }
         return res;
     }
 
-    public List<Human> getByName(String name){             // поиск по имени (список "однофамильцев")
-        List<Human> res = new ArrayList<>();                // не исп.
+    public List<Human> getByName(String name){
+        List<Human> res = new ArrayList<>();
         for (Human human: humanList){
             if (human.getName().equals(name)){
                 res.add(human);
@@ -68,7 +66,7 @@ public class FamilyTree {
         }
         return res;
     }
-    public boolean setWedding(long humanId1, long humanId2){         // создания супружеских связей по Id
+    public boolean setWedding(long humanId1, long humanId2){
         if (checkId(humanId1) && checkId(humanId2)){
             Human human1 = getById(humanId1);
             Human human2 = getById(humanId2);
@@ -76,7 +74,7 @@ public class FamilyTree {
         }
         return false;
     }
-    public boolean setWedding(Human human1, Human human2){              // создания супружеских связей по имени
+    public boolean setWedding(Human human1, Human human2){
         if(human1.getSpouse() == null && human2.getSpouse() == null){
             human1.setSpouse(human2);
             human2.setSpouse(human1);
@@ -86,7 +84,7 @@ public class FamilyTree {
             return false;
         }
     }
-    public boolean setDivorce(long humanId1, long humanId2){              // метод развода  по Id   (не исп)
+    public boolean setDivorce(long humanId1, long humanId2){
         if (checkId(humanId1) && checkId(humanId2)){
             Human human1 = getById(humanId1);
             Human human2 = getById(humanId2);
@@ -94,7 +92,7 @@ public class FamilyTree {
         }
         return false;
     }
-    public boolean setDivorce(Human human1, Human human2) {               // метод развода  по имени
+    public boolean setDivorce(Human human1, Human human2) {
         if (human1.getSpouse() != null && human2.getSpouse() != null) {
             human1.setSpouse(null);
             human2.setSpouse(null);
@@ -103,7 +101,7 @@ public class FamilyTree {
             return false;
         }
     }
-    public boolean remove(long humansId){                          // метод удаления по Id   ( не исп)
+    public boolean remove(long humansId){
         if (checkId(humansId)){
             Human e = getById(humansId);
             return humanList.remove(e);
@@ -113,7 +111,7 @@ public class FamilyTree {
     private boolean checkId(long id) {                    // проверка что заданный номер по списка не более последнего числа списка
         return id < countPeople && id >= 0;
     }
-    public Human getById(long id){                     //  метод поиска человека по Id
+    public Human getById(long id){
         if (checkId(id)){
             for (Human human: humanList){
                 if (human.getId() == id) {
@@ -127,17 +125,17 @@ public class FamilyTree {
     public String toString() {
         return getInfo();
     }
-    public String getInfo(){                               // (ИТОГОВЫЙ) метод вывода информации
-        StringBuilder treebase = new StringBuilder();
-        treebase.append("В дереве ");
-        treebase.append(humanList.size());
-        treebase.append("объектов: \n");
+    public String getInfo(){
+        StringBuilder ftbase = new StringBuilder();
+        ftbase.append("В дереве ");
+        ftbase.append(humanList.size());
+        ftbase.append("объектов: \n");
         for (Human human: humanList){
-            treebase.append(human);
-            treebase.append("\n");
+            ftbase.append(human);
+            ftbase.append("\n");
         }
 
-        return treebase.toString();
+        return ftbase.toString();
     }
 
 }

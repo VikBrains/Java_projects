@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Human {
-        private long id;
+    private long id;
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -33,8 +33,11 @@ public class Human {
     public Human(String name, Gender gender, Human father, Human mother) {
         this(name, gender, null, null, father, mother);
     }
-    public Human(String name, Gender gender, LocalDate deathDate) {
-        this(name, gender, null, deathDate, null, null);
+    public Human(String name, Gender gender, LocalDate birthDate) {
+        this(name, gender, birthDate, null, null, null);
+    }
+    public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate) {
+        this(name, gender, birthDate, deathDate, null, null);
     }
 
     public boolean addChild(Human child) {
@@ -93,8 +96,8 @@ public class Human {
     public Human getMother() {
         return mother;
     }
-    public List<Human> getParents(){                               // вспомогательный метод для создания списка двух людей
-        List<Human> list = new ArrayList<Human>(2);    //для метода addToParents в классе FamilyTree
+    public List<Human> getParents(){
+        List<Human> list = new ArrayList<Human>(2);
         if (father != null) {
             list.add(father);
         }
@@ -110,6 +113,12 @@ public class Human {
         else{
             return getPeriod(birthDate, deathDate);
         }
+    }
+    public LocalDate getLive(){
+        if (deathDate != null){
+            return deathDate;
+        }
+        return null;
     }
     private int getPeriod(LocalDate birthDate, LocalDate deathDate){
         Period diff = Period.between(birthDate, deathDate);
@@ -135,24 +144,26 @@ public class Human {
         return getInfo();
     }
     public String getInfo(){
-        StringBuilder treebase = new StringBuilder();
-        treebase.append("id: ");
-        treebase.append(id);
-        treebase.append(", имя: ");
-        treebase.append(name);
-        treebase.append(", пол: ");
-        treebase.append(getGender());
-        treebase.append(", возраст: ");
-        treebase.append(getAge());
-        treebase.append(", ");
-        treebase.append(getSpouseInfo());
-        treebase.append(", ");
-        treebase.append(getMotherInfo());
-        treebase.append(", ");
-        treebase.append(getFatherInfo());
-        treebase.append(", ");
-        treebase.append(getChildrenInfo());
-        return treebase.toString();
+        StringBuilder ftbase = new StringBuilder();
+        ftbase.append("id: ");
+        ftbase.append(id);
+        ftbase.append(", имя: ");
+        ftbase.append(name);
+        ftbase.append(", пол: ");
+        ftbase.append(getGender());
+        ftbase.append(", возраст: ");
+        ftbase.append(getAge());
+        ftbase.append(", ");
+        ftbase.append(getLive());
+        ftbase.append(", ");
+        ftbase.append(getSpouseInfo());
+        ftbase.append(", ");
+        ftbase.append(getMotherInfo());
+        ftbase.append(", ");
+        ftbase.append(getFatherInfo());
+        ftbase.append(", ");
+        ftbase.append(getChildrenInfo());
+        return ftbase.toString();
     }
 
     public String getSpouseInfo(){

@@ -1,4 +1,6 @@
-package FamilyTree;
+package FamilyTree.src.Family_Tree;
+
+import FamilyTree.src.Family_Tree.HR.Human;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,25 +48,25 @@ public class FamilyTree {
         if (human == null){
             return null;
         }
-        List<Human> res = new ArrayList<>();
+        List<Human> result = new ArrayList<>();
         for (Human parent: human.getParents()){
             for (Human child: parent.getChildren()){
                 if (!child.equals(human)){
-                    res.add(child);
+                    result.add(child);
                 }
             }
         }
-        return res;
+        return result;
     }
 
     public List<Human> getByName(String name){
-        List<Human> res = new ArrayList<>();
+        List<Human> result = new ArrayList<>();
         for (Human human: humanList){
             if (human.getName().equals(name)){
-                res.add(human);
+                result.add(human);
             }
         }
-        return res;
+        return result;
     }
     public boolean setWedding(long humanId1, long humanId2){
         if (checkId(humanId1) && checkId(humanId2)){

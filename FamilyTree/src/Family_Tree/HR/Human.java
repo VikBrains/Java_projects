@@ -1,4 +1,4 @@
-package FamilyTree;
+package FamilyTree.src.Family_Tree.HR;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,16 +11,18 @@ public class Human {
     private Gender gender;
     private LocalDate birthDate;
     private LocalDate deathDate;
+    private String place_of_residence;
     private Human mother;
     private Human father;
     private Human spouse;
     private List<Human> children;
 
-    public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human father, Human mother) {
+    public Human(String name, Gender gender, LocalDate birthDate, String place_of_residence, LocalDate deathDate, Human father, Human mother) {
         id = -1;
         this.name = name;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
+        this.place_of_residence = place_of_residence;
         this.gender = gender;
         this.father = father;
         this.mother = mother;
@@ -28,17 +30,18 @@ public class Human {
     }
 
     public Human(String name, Gender gender, LocalDate birthDate, Human father, Human mother) {
-        this(name, gender, birthDate, null, father, mother);
-    }
-    public Human(String name, Gender gender, Human father, Human mother) {
-        this(name, gender, null, null, father, mother);
-    }
-    public Human(String name, Gender gender, LocalDate birthDate) {
-        this(name, gender, birthDate, null, null, null);
+        this(name, gender, birthDate, null, null, father, mother);
     }
     public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate) {
-        this(name, gender, birthDate, deathDate, null, null);
+        this(name, gender, birthDate, null, deathDate, null, null);
     }
+    public Human(String name, Gender gender, Human father, Human mother) {
+        this(name, gender, null, null, null, father, mother);
+    }
+    public Human(String name, Gender gender, LocalDate birthDate) {
+        this(name, gender, birthDate, null, null, null, null);
+    }
+
 
     public boolean addChild(Human child) {
         if (!children.contains(child)) {
@@ -84,6 +87,12 @@ public class Human {
         return deathDate;
     }
 
+    public void setPlace_of_residence(String place_of_residence) {
+        this.place_of_residence = place_of_residence;
+    }
+    public String getPlace_of_residence(){
+        return place_of_residence;
+    }
     public void setFather(Human father) {
         this.father = father;
     }
@@ -151,10 +160,13 @@ public class Human {
         ftbase.append(name);
         ftbase.append(", пол: ");
         ftbase.append(getGender());
-        ftbase.append(", возраст: ");
-        ftbase.append(getAge());
         ftbase.append(", ");
         ftbase.append(getLive());
+        ftbase.append(", ");
+        ftbase.append(", возраст: ");
+        ftbase.append(getAge());
+        ftbase.append(", проживает в ");
+        ftbase.append(getPlace_of_residence());
         ftbase.append(", ");
         ftbase.append(getSpouseInfo());
         ftbase.append(", ");
@@ -163,7 +175,7 @@ public class Human {
         ftbase.append(getFatherInfo());
         ftbase.append(", ");
         ftbase.append(getChildrenInfo());
-        return ftbase.toString();
+                return ftbase.toString();
     }
 
     public String getSpouseInfo(){
@@ -226,5 +238,4 @@ public class Human {
         Human human = (Human) obj;
         return human.getId() == getId();
     }
-
 }

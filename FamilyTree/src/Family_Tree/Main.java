@@ -1,4 +1,7 @@
-package FamilyTree;
+package FamilyTree.src.Family_Tree;
+
+import FamilyTree.src.Family_Tree.HR.Gender;
+import FamilyTree.src.Family_Tree.HR.Human;
 
 import java.time.LocalDate;
 

@@ -1,3 +1,6 @@
+package src.OOP_Task1;
+
+
 public class CreditAccount extends Account {
     public CreditAccount (double amount) {
         super(amount);

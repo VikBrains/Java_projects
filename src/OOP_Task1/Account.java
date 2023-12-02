@@ -1,12 +1,13 @@
+package src.OOP_Task1;
 
 public class Account {
-        
+
     private double amount;
 
     public Account (double amount) {
         this.amount = amount;
     }
-    
+
     public void add (double amount) {
         amount += amount;
 
@@ -19,3 +20,4 @@ public class Account {
         return amount;
     }
 }
+

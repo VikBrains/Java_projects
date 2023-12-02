@@ -1,20 +1,20 @@
-package FamilyTree.src.Family_Tree;
+package src.FamilyTree_2;
 
-import FamilyTree.src.Family_Tree.HR.Human;
+import src.FamilyTree_2.HR.Human;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyTree {
-    private long countPeople;
+    private int countPeople;
 
     private List<Human> humanList;
 
-    public FamilyTree(){                                // конструктор без аргументов
+    public FamilyTree(){
         this(new ArrayList<>());
     }
 
-    public FamilyTree(List<Human> humanList) {       // конструктор с аргументами
+    public FamilyTree(List<Human> humanList) {
         this.humanList = humanList;
     }
 
@@ -110,7 +110,7 @@ public class FamilyTree {
         }
         return false;
     }
-    private boolean checkId(long id) {                    // проверка что заданный номер по списка не более последнего числа списка
+    private boolean checkId(long id) {
         return id < countPeople && id >= 0;
     }
     public Human getById(long id){

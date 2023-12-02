@@ -1,7 +1,8 @@
-package FamilyTree.src.Family_Tree;
+package src.FamilyTree;
 
-import FamilyTree.src.Family_Tree.HR.Gender;
-import FamilyTree.src.Family_Tree.HR.Human;
+
+import src.FamilyTree.HR.Gender;
+import src.FamilyTree.HR.Human;
 
 import java.time.LocalDate;
 
@@ -11,10 +12,10 @@ public class Main {
         System.out.println(tree);
     }
 
-    static FamilyTree myTree(){
+    static FamilyTree myTree() {
         FamilyTree tree = new FamilyTree();
 
-        Human полина = new Human("Полина", Gender.Female,LocalDate.of(1936, 9 ,16), LocalDate.of(1997, 5, 2));
+        Human полина = new Human("Полина", Gender.Female, LocalDate.of(1936, 9, 16), LocalDate.of(1997, 5, 2));
         tree.add(полина);
 
         Human Viktor = new Human("Виктор", Gender.Male, LocalDate.of(1967, 4, 9), null, полина);
@@ -36,4 +37,5 @@ public class Main {
 
         return tree;
     }
+
 }
